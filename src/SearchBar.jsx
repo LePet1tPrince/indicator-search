@@ -2,45 +2,54 @@ import { useState } from 'react';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import useFetch from './customHooks/useFetch';
 import irt from './assets/IRT.json'
 import DisplayTable from './DisplayTable';
-// import { IRT } from './assets/IRT'
+import Typography from '@mui/material/Typography';
+
 
 function SearchBar() {
 
     const [searchTerm, setSearchTerm] = useState('')
     const searchTerms = searchTerm.split(" ")
-    // const [irt, setIRT] = useState(IRT)
-    // const [ data, setData, isLoading, isError ] = useFetch('./assets/IRT.js')
-    // let admins = require('./assets/IRT.json');
-    // const sample = irt[0:100]
-    const filteredRows = irt.filter(item => (item['Indicator Statement'] !== null) && searchTerms.every(term => item['Indicator Statement'].includes(term)))
+   
+    const filteredRows = irt.filter(item => (item['Indicator Statement'] !== null) && searchTerms.every(term => item['Indicator Statement'].toLowerCase().includes(term.toLowerCase())))
     function handleChange(e) {
         setSearchTerm(e.target.value)
     }
     return (
-        <div>
+        <div >
+            <Box 
+            sx={{
+                '& > :not(style)': { margin: "20px 0 20px 50px", width: '50%', alignItems: "center"},
+            }}>
+
+            
+            <Typography variant="h2">Indicator Search App</Typography>
+            <Typography>This app is intended for easily searching for indicator statements. 
+                The search box will filter the IRT for indicators where the statement contains all words (not necessairly in order)
+                Powered by data from IRT_V13 on Dec 19, 2023. Any changes made to the file after that date will not show in this app.
+                </Typography>
+                <Typography>Written by Timmy Bender</Typography>
+            </Box>
 
         <Box
         component="form"
         sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
+            '& > :not(style)': { margin: "0 0 0 50px", width: '50ch' },
         }}
         noValidate
         autoComplete="off"
         >
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" value={searchTerm} onChange={handleChange} />
+        <TextField id="searchbar" label="Indicator Search" variant="outlined" value={searchTerm} onChange={handleChange} />
 
-        {/* {filteredRows.map((item, index) => {
-            
-            return (<p key={index}> {item["Indicator Statement"]} - {item["Indicator Code"]}</p>)
-            
-            
-        })} */}
+       
 
       </Box>
+      <Box sx={{margin: "50px"}}>
+
         <DisplayTable filteredRows={filteredRows} />
+      </Box>
+        {/* {JSON.stringify(filteredRows)} */}
         </div>
     )
 };
