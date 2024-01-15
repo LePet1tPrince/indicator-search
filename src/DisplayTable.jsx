@@ -49,8 +49,8 @@ export default function DisplayTable({filteredRows}) {
                 {row["Indicator Statement"]}
               </TableCell>
               <TableCell align="right">
-              <Tooltip title="Copy to Clipboards">
-                <Button onClick={() => copyToClipboard(row["Indicator Code"])}>{row["Indicator Code"]}</Button>
+              <Tooltip title="Copy to Clipboard">
+                <Button onClick={() => copyToClipboard(row["copy-Indicator Code"])}>{row["copy-Indicator Code"]}</Button>
                 </Tooltip>
                 </TableCell>
               <TableCell align="right">{row["level"]}</TableCell>
