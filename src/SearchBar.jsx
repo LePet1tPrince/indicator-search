@@ -27,8 +27,9 @@ function SearchBar() {
             <Typography variant="h2">Indicator Search App</Typography>
             <Typography>This app is intended for easily searching for indicator statements. 
                 The search box will filter the IRT for indicators where the statement contains all words (not necessairly in order)
-                Powered by data from IRT_V13 on Jan 15, 2024. Any changes made to the file after that date will not show in this app.
+                Powered by data from IRT_V13 on Jan 18, 2024. Any changes made to the file after that date will not show in this app.
                 </Typography>
+                <Typography>Update Jan 18 2024: Including Meta code and hover over meta code to see meta statement. Click on meta code to copy to clipboard.</Typography>
                 <Typography>Written by Timmy Bender</Typography>
             </Box>
 

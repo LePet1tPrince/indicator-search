@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import irt from './assets/IRT.json'
+
 
 
 
@@ -33,6 +35,9 @@ export default function DisplayTable({filteredRows}) {
             <TableCell align="right"><Typography variant="h5">Level</Typography></TableCell>
             <TableCell align="right"><Typography variant="h5">Sector</Typography></TableCell>
             <TableCell align="right"><Typography variant="h5">Subsector</Typography></TableCell>
+            <TableCell align="right"><Typography variant="h5">Meta Code</Typography></TableCell>
+            {/* <TableCell align="right"><Typography variant="h5">Meta Statement</Typography></TableCell> */}
+
             {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
           </TableRow>
         </TableHead>
@@ -57,6 +62,19 @@ export default function DisplayTable({filteredRows}) {
               
               <TableCell align="right">{row["Sector/Theme"]}</TableCell>
               <TableCell align="right">{row["Sub Sector/Sub Theme"]}</TableCell>
+              <TableCell align="right">
+                <Tooltip title={row['meta_statement']} placement="right">
+                  <Button
+                  onClick={() => copyToClipboard(row["Meta Link"])}
+                  >
+                    {row["Meta Link"]}
+                    </Button>
+              </Tooltip>
+                </TableCell>
+              {/* <TableCell align="right">{row['meta_statement']}
+              
+              </TableCell> */}
+
               {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>)
             } 
